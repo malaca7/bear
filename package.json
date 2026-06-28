@@ -1,0 +1,16 @@
+{
+  "name": "bearpainel",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix bearpainel",
+    "build": "npm run build --prefix bearpainel",
+    "start": "npm run start --prefix bearpainel"
+  },
+  "dependencies": {
+    "next": "^9.3.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "^8.1.0"
+  }
+}

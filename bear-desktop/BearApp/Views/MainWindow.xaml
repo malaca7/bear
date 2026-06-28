@@ -1,0 +1,89 @@
+<Window x:Class="BearApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BEAR" Width="1100" Height="700" MinWidth="900" MinHeight="600"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent">
+    <Border CornerRadius="16" Background="{StaticResource BearBackground}" BorderThickness="1" BorderBrush="#1AFFFFFF">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar -->
+            <Border Grid.Column="0" Background="{StaticResource BearBgLight}" CornerRadius="16,0,0,16" BorderThickness="0,0,1,0" BorderBrush="#0DFFFFFF">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Header with drag -->
+                    <Border Grid.Row="0" Padding="20,16" MouseLeftButtonDown="DragWindow">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="36" Height="36" CornerRadius="10" Background="{StaticResource BearPrimary}" Margin="0,0,10,0">
+                                <TextBlock Text="B" FontSize="18" FontWeight="Black" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="BEAR" FontSize="20" FontWeight="Bold" VerticalAlignment="Center">
+                                <TextBlock.Foreground>
+                                    <LinearGradientBrush><GradientStop Color="#FF6A00" Offset="0"/><GradientStop Color="#FF9955" Offset="1"/></LinearGradientBrush>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Navigation -->
+                    <StackPanel Grid.Row="1" Margin="8,8">
+                        <Button Content="📊  Dashboard" Style="{StaticResource NavButton}" Tag="Dashboard" Click="NavClick"/>
+                        <Button Content="👤  Perfil" Style="{StaticResource NavButton}" Tag="Profile" Click="NavClick"/>
+                        <Button Content="🔑  Minha Licença" Style="{StaticResource NavButton}" Tag="License" Click="NavClick"/>
+                        <Button Content="⚙️  Configurações" Style="{StaticResource NavButton}" Tag="Settings" Click="NavClick"/>
+                        <Button Content="📜  Histórico" Style="{StaticResource NavButton}" Tag="History" Click="NavClick"/>
+                        <Button Content="🔔  Notificações" Style="{StaticResource NavButton}" Tag="Notifications" Click="NavClick"/>
+                        <Button Content="⬆️  Atualizações" Style="{StaticResource NavButton}" Tag="Updates" Click="NavClick"/>
+                        <Button Content="📋  Logs" Style="{StaticResource NavButton}" Tag="Logs" Click="NavClick"/>
+                        <Button Content="ℹ️  Sobre" Style="{StaticResource NavButton}" Tag="About" Click="NavClick"/>
+                    </StackPanel>
+
+                    <!-- Footer -->
+                    <StackPanel Grid.Row="2" Margin="8,0,8,12">
+                        <Border Height="1" Background="#0DFFFFFF" Margin="8,0,8,8"/>
+                        <Button Content="🚪  Sair" Style="{StaticResource NavButton}" Click="LogoutClick" Foreground="#EF4444"/>
+                        <TextBlock Text="v1.0.0" FontSize="11" Foreground="#33FFFFFF" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Main Content -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title bar -->
+                <Border Grid.Row="0" MouseLeftButtonDown="DragWindow" Background="Transparent">
+                    <Grid>
+                        <TextBlock x:Name="PageTitle" Text="Dashboard" FontSize="14" FontWeight="SemiBold" 
+                                   Foreground="#99FFFFFF" VerticalAlignment="Center" Margin="24,0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,8,0">
+                            <Button Content="─" Width="40" Height="32" FontSize="14" Click="MinimizeClick"
+                                    Background="Transparent" Foreground="#66FFFFFF" BorderThickness="0" Cursor="Hand"/>
+                            <Button Content="□" Width="40" Height="32" FontSize="14" Click="MaximizeClick"
+                                    Background="Transparent" Foreground="#66FFFFFF" BorderThickness="0" Cursor="Hand"/>
+                            <Button Content="✕" Width="40" Height="32" FontSize="14" Click="CloseClick"
+                                    Background="Transparent" Foreground="#66FFFFFF" BorderThickness="0" Cursor="Hand"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Page content -->
+                <Border Grid.Row="1" Margin="24,0,24,24">
+                    <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
